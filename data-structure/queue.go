@@ -36,12 +36,16 @@ func (q *Queue) Enqueue(val interface{}) {
 }
 
 func (q *Queue) Dequeue()*Node {
+	if q.Head == nil {
+		return nil
+	}
+	var dequeued = q.Head;
 	if q.Head != nil {
-		q.Head = q.Head.Next
+		q.Head = dequeued.Next
 		q.Head.Prev = nil
 		q.Size--
 	}
-	return q.Head
+	return dequeued
 }
 
 func (q *Queue) Display() {
